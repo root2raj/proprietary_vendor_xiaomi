@@ -57,6 +57,25 @@ cc_prebuilt_library_shared {
 }
 
 cc_prebuilt_library_shared {
+	name: "libqmiservices",
+	owner: "xiaomi",
+	strip: {
+		none: true,
+	},
+	target: {
+		android_arm: {
+			srcs: ["proprietary/vendor/lib/libqmiservices.so"],
+		},
+		android_arm64: {
+			srcs: ["proprietary/vendor/lib64/libqmiservices.so"],
+		},
+	},
+	compile_multilib: "both",
+	prefer: true,
+	soc_specific: true,
+}
+
+cc_prebuilt_library_shared {
 	name: "libsdm-disp-vndapis",
 	owner: "xiaomi",
 	strip: {
@@ -143,16 +162,6 @@ cc_prebuilt_library_shared {
 }
 
 android_app_import {
-	name: "QtiTelephonyService",
-	owner: "xiaomi",
-	apk: "proprietary/app/QtiTelephonyService/QtiTelephonyService.apk",
-	certificate: "platform",
-	dex_preopt: {
-		enabled: false,
-	},
-}
-
-android_app_import {
 	name: "WfdService",
 	owner: "xiaomi",
 	apk: "proprietary/priv-app/WfdService/WfdService.apk",
@@ -205,6 +214,17 @@ android_app_import {
 		enabled: false,
 	},
 	soc_specific: true,
+}
+
+android_app_import {
+	name: "QtiTelephonyService",
+	owner: "xiaomi",
+	apk: "proprietary/product/app/QtiTelephonyService/QtiTelephonyService.apk",
+	certificate: "platform",
+	dex_preopt: {
+		enabled: false,
+	},
+	product_specific: true,
 }
 
 android_app_import {
